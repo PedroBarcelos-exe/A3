@@ -1,9 +1,11 @@
+# instruções do terminal para realizar atualização dos arquivos
+
 # @h-grassi ➜ /workspaces/A3 (main) $ git add . 
 # @h-grassi ➜ /workspaces/A3 (main) $ git commit
 
 [main 426117f] teste primeiro commit
  1 file changed, 1 insertion(+)
-@h-grassi ➜ /workspaces/A3 (main) $ git push origin main
+# @h-grassi ➜ /workspaces/A3 (main) $ git push origin main
 Enumerating objects: 5, done.
 Counting objects: 100% (5/5), done.
 Delta compression using up to 2 threads
