@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int num;
+        do{
             System.out.println("================================================");
             System.out.println("1. Cadastrar pessoa\n");
             System.out.println("2. Cadastrar veículo\n");
@@ -16,7 +17,6 @@ public class Main {
             System.out.println("9. Consultar veículos com placa antiga\n");
             System.out.println("===============================================");
             System.out.println("Digite 0 para sair: ");
-        do{
             num = sc.nextInt();
             switch (num) {
                 case 1: System.out.println("clicou 1"); break;
