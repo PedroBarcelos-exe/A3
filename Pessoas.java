@@ -6,7 +6,7 @@ public class Pessoas{
     private double dataNascimento;
     private char genero;
 
-    public void Pessoas(int novoID, double novoCPF, double novaDatadeNascimento, String novoNome, char novoGenero){
+    public Pessoas(int novoID, double novoCPF, double novaDatadeNascimento, String novoNome, char novoGenero){
         this.id = novoID;
         this.CPF = novoCPF;
         this.dataNascimento = novaDatadeNascimento;

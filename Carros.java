@@ -6,7 +6,7 @@ public class Carros {
     private int ano;
 
 
-    public void Carros(int novoID, int novoAno,String novaMarca, String novaCor){
+    public Carros(int novoID, int novoAno,String novaMarca, String novaCor){
         this.id = novoID;
         this.ano = novoAno;
         this.marca = novaMarca;
