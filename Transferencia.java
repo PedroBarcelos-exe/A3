@@ -3,10 +3,10 @@ public class Transferencia {
     private String placaAntes;
     private String placaNova;
 
-    public Transferencia(int novoID, String novaPlacaAntes, String novaPlacaNova){
-        this.id = novoID;
-        this.placaAntes = novaPlacaAntes;
-        this.placaNova = novaPlacaNova;
+    public Transferencia(int id, String placaAntes, String placaNova){
+        this.id = id;
+        this.placaAntes = placaAntes;
+        this.placaNova = placaNova;
     }
     
 }

@@ -16,7 +16,7 @@ public class Main {
             System.out.println("8. Quantidade de veículos transformar por tempo\n");
             System.out.println("9. Consultar veículos com placa antiga\n");
             System.out.println("===============================================");
-            System.out.println("Digite 0 para sair: ");
+            System.out.println("Digite outro número para sair: ");
             num = sc.nextInt();
             switch (num) {
                 case 1: System.out.println("clicou 1"); break;
@@ -28,8 +28,7 @@ public class Main {
                 case 7: System.out.println("clicou 7"); break;
                 case 8: System.out.println("clicou 8"); break;
                 case 9: System.out.println("clicou 9"); break;
-                case 0: System.out.println("clicou 0"); break;
-                default: System.out.println("Valor inválido"); break;
+                default: System.out.println("clicou sair"); break;
             }
         }while(num != 0);
         sc.close();
