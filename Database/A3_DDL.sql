@@ -41,7 +41,7 @@ CREATE TABLE `pessoas` (
 
 LOCK TABLES `pessoas` WRITE;
 /*!40000 ALTER TABLE `pessoas` DISABLE KEYS */;
-INSERT INTO `pessoas` VALUES (1,'Henrique','01005079056','1999-07-04','M'),(2,'Pedro','07468192006','2002-01-01','M'),(3,'Luccas','09034700046','2001-01-01','M'),(4,'Julia','83681469091','2001-01-01','F');
+INSERT INTO `pessoas` VALUES (1,'Henrique','01005079056','1999-07-04','M'),(2,'Pedro','07468192006','2002-01-01','M'),(3,'Luccas ','09034700046','2001-01-01','M'),(4,'Julia','83681469091','2001-01-01','F');
 /*!40000 ALTER TABLE `pessoas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,8 +59,7 @@ CREATE TABLE `transferencias` (
   `id_pessoa_venda` int DEFAULT NULL,
   `placa_anterior` varchar(7) DEFAULT NULL,
   `placa_atual` varchar(7) NOT NULL,
-  `status_veiculo` varchar(1) NOT NULL DEFAULT 'A' COMMENT 'Status do veículo após a transferência, A-ativo, B-baixado, etc...',
-  `status_transferencia` varchar(45) NOT NULL DEFAULT 'C' COMMENT 'Status da transferência: C- Confirmada, A- Anulada, S- Suspensa, E- em espera.',
+  `status_transferencia` varchar(45) NOT NULL DEFAULT 'N' COMMENT 'Status da transferência: ''N'' - Nova(mais recente), ''A''- anterior',
   `data` date NOT NULL COMMENT 'Data em que foi realizada a transferencia.',
   PRIMARY KEY (`id`),
   KEY `fk_veiculo_idx` (`id_veiculo`),
@@ -69,7 +68,7 @@ CREATE TABLE `transferencias` (
   CONSTRAINT `fk_pessoa_compra` FOREIGN KEY (`id_pessoa_compra`) REFERENCES `pessoas` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_pessoa_venda` FOREIGN KEY (`id_pessoa_venda`) REFERENCES `pessoas` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_veiculo` FOREIGN KEY (`id_veiculo`) REFERENCES `veiculos` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabela para armazenar todos os dados das transferências, apenas colunas desta tabela serão modificadas quando o usuário realizar uma transferência';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabela para armazenar todos os dados das transferências, apenas colunas desta tabela serão modificadas quando o usuário realizar uma transferência';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,23 +77,9 @@ CREATE TABLE `transferencias` (
 
 LOCK TABLES `transferencias` WRITE;
 /*!40000 ALTER TABLE `transferencias` DISABLE KEYS */;
-INSERT INTO `transferencias` VALUES (1,2,1,NULL,NULL,'HYF9175','A','C','2025-05-28'),(2,1,2,NULL,NULL,'MZX6980','A','C','2025-05-28'),(3,3,3,NULL,NULL,'JZA3230','A','C','2025-05-28');
+INSERT INTO `transferencias` VALUES (1,2,1,NULL,NULL,'HYF9175','N','2025-05-28'),(2,1,2,NULL,NULL,'MZX6980','N','2025-05-28'),(3,3,3,NULL,NULL,'JZA3230','N','2025-05-28');
 /*!40000 ALTER TABLE `transferencias` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `veiculos`
@@ -110,26 +95,18 @@ CREATE TABLE `veiculos` (
   `ano` int NOT NULL COMMENT 'Ano de fabricação do carro.',
   `cor` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabela para armazenamento exclusivo das informações dos veículos';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabela para armazenamento exclusivo das informações dos veículos';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `veiculos`
---
+-- 
 
 LOCK TABLES `veiculos` WRITE;
 /*!40000 ALTER TABLE `veiculos` DISABLE KEYS */;
-INSERT INTO `veiculos` VALUES (1,'Fiat','Uno Mille',2002,'Branco'),(2,'volkswagen','Gol',1998,'Preto'),(3,'volkswagen','Kombi',1980,'Amarelo'),(4,'Ford','Ka',2020,'Vermelho');
+INSERT INTO `veiculos` VALUES (1,'Fiat','Uno Mille',2002,'Branco'),(2,'volkswagen','Gol',1998,'Preto'),(3,'volkswagen','Kombi',1980,'Amarelo'),(4,'Ford','Ka',2020,'Vermelho'),(5,'Peugeot','206',2015,'Prata');
 /*!40000 ALTER TABLE `veiculos` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'a3_transfere_veiculo'
---
-
---
--- Dumping routines for database 'a3_transfere_veiculo'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -140,4 +117,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-28 15:40:08
+-- Dump completed on 2025-06-02 14:51:28
