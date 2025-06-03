@@ -27,3 +27,18 @@ public class mysql {
         }
     }
 }
+/* 
+ package org.example;
+import pacote.mysql;
+
+public class Main {
+    public static void main(String[] args) {
+        // Chamando o método para testar a conexão
+        mysql.testConnection();
+
+        // Aqui você pode adicionar outras operações com o banco
+        System.out.println("Teste de conexão concluído!");
+
+    }
+}
+*/
