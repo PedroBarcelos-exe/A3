@@ -21,7 +21,11 @@ public class Main {
                 break;
                 case 2: System.out.println("Tranfira o Veículo");
                 break;
-                case 3: System.out.println("Mostrar Consulta"); 
+                case 3: 
+                System.out.println("Consultar Veículo por Placa");
+                System.out.println("Consultar Veículos por Pessoa");
+                System.out.println("Consultar Histórico de Veículos"); 
+                System.out.println("Consultar veículos com placa no modelo antigo");
                 break;
                 case 4: System.out.println("Mostrar Veículos por Marca"); 
                 break;
