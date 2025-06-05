@@ -1,32 +1,44 @@
-package pacote;
+import java.util.Scanner;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-public class mysql {
-    private static final String URL = "jdbc:mysql://localhost:3306/a3_transfere_veiculo";
-    private static final String USER = "root";
-    private static final String PASSWORD = "root";
-
-    public static Connection getConnect() throws SQLException {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            return DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch(ClassNotFoundException e) {
-            throw new SQLException("Driver JDBC não encontrado", e);
-        }
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int num;
+        do{
+            System.out.println("================================================");
+            System.out.println("1. Cadastrar\n");
+            System.out.println("2. Transferir veículo\n");
+            System.out.println("3. Consultar\n");
+            System.out.println("4. Quantidade de veículos por marca\n");
+            System.out.println("5. Quantidade de veículos transformar por tempo\n");
+            System.out.println("===============================================");
+            System.out.println("Digite o número 0 para sair: ");
+            num = sc.nextInt();
+            switch (num) {
+                case 1: 
+                System.out.println("Cadastrar Pessoa");
+                System.out.println("Cadastrar Veículo");
+                break;
+                case 2: System.out.println("Tranfira o Veículo");
+                break;
+                case 3: 
+                System.out.println("Consultar Veículo por Placa");
+                System.out.println("Consultar Veículos por Pessoa");
+                System.out.println("Consultar Histórico de Veículos"); 
+                System.out.println("Consultar veículos com placa no modelo antigo");
+                break;
+                case 4: System.out.println("Mostrar Veículos por Marca"); 
+                break;
+                case 5: System.out.println("Mostrar Veículos por Tempo"); 
+                break;
+                default: System.out.println("clicou sair"); break;
+            }
+        }while(num != 0);
+        sc.close();
     }
-
-    public static void testConnection() {
-        try(Connection conn = getConnect()) {
-            System.out.println("Conexão estabelecida com sucesso!");
-        } catch(SQLException e) {
-            System.out.println("Erro na conexão:");
-            e.printStackTrace();
-        }
-    }
+    
 }
+
 /* 
  package org.example;
 import pacote.mysql;
