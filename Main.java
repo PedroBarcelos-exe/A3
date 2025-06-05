@@ -35,6 +35,9 @@ public class Main {
             }
         }while(num != 0);
         sc.close();
+        
+        //teste de conexão com o banco
+        mysql.testConnection();
     }
     
 }

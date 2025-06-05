@@ -1,9 +1,6 @@
-package modelo;
+//package modelo;
 
 import java.time.LocalDate;
-
-package modelo;
-
 import java.time.LocalDate;
 
 public class Transferencia {
