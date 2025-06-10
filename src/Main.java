@@ -1,8 +1,13 @@
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
+        //não consegui fazer o insert do joão no banco
+        Pessoa joao = new Pessoa("joao teste integracao", "0000",LocalDate.parse("2025-01-01"), 'I');
+        System.out.println(joao.toString());
+
         int num;
         
         do{
@@ -34,7 +39,7 @@ public class Main {
                 break;
                 default: System.out.println("clicou sair"); break;
             }
-        }while(num != 0); 
+        }while(num != 0);  
         sc.close();
         //testar conexão
         mysql.testConnection();
