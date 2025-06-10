@@ -29,6 +29,28 @@ public class mysql {
         }
     }
 
+    public static void listarPessoas() {
+        String query = "SELECT id, nome, cpf FROM pessoa";
+
+        try (Connection conn = getConnect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            System.out.println("Lista de pessoas:");
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String cpf = rs.getString("cpf");
+
+                System.out.println("ID: " + id + " | Nome: " + nome + " | cpf: " + cpf);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao consultar banco de dados:");
+            e.printStackTrace();
+        }
+    }
+
     public static boolean isTableEmpty(String tableName) throws SQLException {
         String query = "SELECT COUNT(*) FROM " + tableName;
         try (Connection conn = getConnect(); 

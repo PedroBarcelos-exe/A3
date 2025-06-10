@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int num;
+        
         do{
             System.out.println("================================================");
             System.out.println("1. Cadastrar\n");
@@ -33,11 +34,13 @@ public class Main {
                 break;
                 default: System.out.println("clicou sair"); break;
             }
-        }while(num != 0);
+        }while(num != 0); 
         sc.close();
-        
-        //teste de conexão com o banco
+        //testar conexão
         mysql.testConnection();
+        
+        //consulta teste integração
+        mysql.listarPessoas();
     }
     
 }
