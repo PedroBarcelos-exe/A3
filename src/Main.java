@@ -16,18 +16,6 @@ public class Main {
         mysql.testConnection();
         System.out.println("\n");
 
-        try {
-            if (mysql.isTableEmpty("pessoa")) {
-                System.out.println("As tabelas estão vazias. Realizando carga inicial de dados...");
-                loadInitialData(); 
-                System.out.println("Carga inicial de dados concluída.\n");
-            } else {
-                System.out.println("As tabelas já contêm dados. Pulando a carga inicial.\n");
-            }
-        } catch (SQLException e) {
-            System.err.println("Erro ao verificar ou carregar dados iniciais: " + e.getMessage());
-        }
-
         int num; 
         do { 
             System.out.println("=================================================");
@@ -582,58 +570,6 @@ public class Main {
 
         } catch (SQLException e) {
             System.err.println("Erro ao dar baixa no veículo: " + e.getMessage());
-        }
-    }
-    private static void loadInitialData() {
-        System.out.println("Simulando carga de dados iniciais de exemplo...");
-        try {
-            
-            int idPessoa1 = pessoaDAO.insert(new Pessoa("Maria Silva", "12345678901", LocalDate.of(1990, 1, 15), 'F'));
-            System.out.println("Pessoa 'Maria Silva' cadastrada com ID: " + idPessoa1);
-            int idPessoa2 = pessoaDAO.insert(new Pessoa("Carlos Mendes", "98765432109", LocalDate.of(1985, 6, 20), 'M'));
-            System.out.println("Pessoa 'Carlos Mendes' cadastrada com ID: " + idPessoa2);
-            int idPessoa3 = pessoaDAO.insert(new Pessoa("Ana Costa", "45678912345", LocalDate.of(1992, 11, 5), 'F'));
-            System.out.println("Pessoa 'Ana Costa' cadastrada com ID: " + idPessoa3);
-            int idPessoa4 = pessoaDAO.insert(new Pessoa("João Pereira", "11122233344", LocalDate.of(1975, 3, 22), 'M'));
-            System.out.println("Pessoa 'João Pereira' cadastrada com ID: " + idPessoa4);
-
-            int idVeiculo1 = veiculoDAO.insert(new Veiculo("Fiat", "Uno Mille", 2002, "Branco"));
-            transferenciaDAO.insert(new Transferencia(idVeiculo1, idPessoa1, null, null, "ABC1A23", LocalDate.of(2020, 1, 10)));
-            System.out.println("Veículo 'Fiat Uno' (ID: " + idVeiculo1 + ") emplacado para Maria Silva.");
-
-            int idVeiculo2 = veiculoDAO.insert(new Veiculo("Volkswagen", "Gol", 1998, "Preto"));
-            transferenciaDAO.insert(new Transferencia(idVeiculo2, idPessoa2, null, null, "DEF2B45", LocalDate.of(2019, 5, 20)));
-            System.out.println("Veículo 'VW Gol' (ID: " + idVeiculo2 + ") emplacado para Carlos Mendes.");
-
-            int idVeiculo3 = veiculoDAO.insert(new Veiculo("Volkswagen", "Kombi", 1980, "Amarelo"));
-            transferenciaDAO.insert(new Transferencia(idVeiculo3, idPessoa1, null, null, "XYZ-1234", LocalDate.of(2018, 3, 1)));
-            System.out.println("Veículo 'VW Kombi' (ID: " + idVeiculo3 + ") emplacado para Maria Silva (placa antiga).");
-
-            int idVeiculo4 = veiculoDAO.insert(new Veiculo("Ford", "Ka", 2020, "Vermelho"));
-            transferenciaDAO.insert(new Transferencia(idVeiculo4, idPessoa3, null, null, "GHI3C67", LocalDate.of(2021, 7, 1)));
-            System.out.println("Veículo 'Ford Ka' (ID: " + idVeiculo4 + ") emplacado para Ana Costa.");
-
-            int idVeiculo5 = veiculoDAO.insert(new Veiculo("Peugeot", "206", 2015, "Prata"));
-            transferenciaDAO.insert(new Transferencia(idVeiculo5, idPessoa2, null, null, "LMN-5678", LocalDate.of(2017, 9, 12)));
-            System.out.println("Veículo 'Peugeot 206' (ID: " + idVeiculo5 + ") emplacado para Carlos Mendes (placa antiga).");
-
-            transferenciaDAO.updateStatusOfCurrentTransfer(idVeiculo3, "A");
-            
-            transferenciaDAO.insert(new Transferencia(idVeiculo3, idPessoa2, idPessoa1, "XYZ-1234", Veiculo.convertOldPlateToMercosul("XYZ-1234"), LocalDate.of(2023, 10, 25)));
-            System.out.println("Transferência do Veículo Kombi (ID: " + idVeiculo3 + ") de Maria Silva para Carlos Mendes, placa convertida.");
-
-            transferenciaDAO.updateStatusOfCurrentTransfer(idVeiculo5, "A");
-            transferenciaDAO.insert(new Transferencia(idVeiculo5, idPessoa3, idPessoa2, "LMN-5678", Veiculo.convertOldPlateToMercosul("LMN-5678"), LocalDate.of(2024, 2, 1)));
-            System.out.println("Transferência do Veículo Peugeot (ID: " + idVeiculo5 + ") de Carlos Mendes para Ana Costa, placa convertida.");
-
-            transferenciaDAO.updateStatusOfCurrentTransfer(idVeiculo1, "A");
-            transferenciaDAO.insert(new Transferencia(idVeiculo1, idPessoa4, idPessoa1, "ABC1A23", "ABC1A23", LocalDate.of(2025, 1, 5)));
-            System.out.println("Transferência do Veículo Uno (ID: " + idVeiculo1 + ") de Maria Silva para João Pereira (placa Mercosul mantida).");
-
-
-        } catch (SQLException e) {
-            System.err.println("Erro ao carregar dados iniciais de exemplo: " + e.getMessage());
-            System.err.println("Por favor, verifique se o banco de dados 'a3_transfere_veiculo' e as tabelas estão criadas e acessíveis na Oracle Cloud Infrastructure (OCI).");
         }
     }
 }
