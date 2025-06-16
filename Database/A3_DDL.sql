@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `a3_transfere_veiculo` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `a3_transfere_veiculo`;
 -- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: localhost    Database: a3_transfere_veiculo
@@ -29,10 +27,10 @@ CREATE TABLE `pessoa` (
   `nome` varchar(100) NOT NULL,
   `cpf` varchar(11) NOT NULL,
   `dataNascimento` date NOT NULL,
-  `genero` varchar(1) NOT NULL DEFAULT 'I' COMMENT 'Valores permitidos: M - masculino, F- feminino, I - indefinido/não informado.',
+  `genero` varchar(1) NOT NULL DEFAULT 'O' COMMENT 'Valores permitidos: M - masculino, F- feminino, O - Outro.',
   PRIMARY KEY (`id`),
   UNIQUE KEY `cpf_UNIQUE` (`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabela para armazer os dados das pessoa do sistema.';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabela para armazer os dados das pessoas do sistema.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +39,7 @@ CREATE TABLE `pessoa` (
 
 LOCK TABLES `pessoa` WRITE;
 /*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
-INSERT INTO `pessoa` VALUES (1,'Henrique','01005079056','1999-07-04','M'),(2,'Pedro','07468192006','2002-01-01','M'),(3,'Luccas ','09034700046','2001-01-01','M'),(4,'Julia','83681469091','2001-01-01','F');
+INSERT INTO `pessoa` VALUES (1,'Henrique','01005079056','1999-07-04','M'),(2,'Pedro','07468192006','2002-01-01','M'),(3,'Luccas ','09034700046','2001-01-01','M'),(4,'Julia','83681469091','2001-01-01','F'),(5,'Jose carlos','12345678901','2025-06-10','M'),(6,'jesus','10987654321','0001-01-01','M');
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,8 +55,8 @@ CREATE TABLE `transferencia` (
   `id_veiculo` int NOT NULL,
   `id_pessoa_compra` int NOT NULL,
   `id_pessoa_venda` int DEFAULT NULL,
-  `placa_anterior` varchar(7) DEFAULT NULL,
-  `placa_atual` varchar(7) NOT NULL,
+  `placa_anterior` varchar(8) DEFAULT NULL,
+  `placa_atual` varchar(8) NOT NULL,
   `status_transferencia` varchar(45) NOT NULL DEFAULT 'N' COMMENT 'Status da transferência: ''N'' - Nova(mais recente), ''A''- anterior',
   `data` date NOT NULL COMMENT 'Data em que foi realizada a transferencia.',
   PRIMARY KEY (`id`),
@@ -68,7 +66,7 @@ CREATE TABLE `transferencia` (
   CONSTRAINT `fk_pessoa_compra` FOREIGN KEY (`id_pessoa_compra`) REFERENCES `pessoa` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_pessoa_venda` FOREIGN KEY (`id_pessoa_venda`) REFERENCES `pessoa` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_veiculo` FOREIGN KEY (`id_veiculo`) REFERENCES `veiculo` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabela para armazenar todos os dados das transferências, apenas colunas desta tabela serão modificadas quando o usuário realizar uma transferência';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabela para armazenar todos os dados das transferências, apenas colunas desta tabela serão modificadas quando o usuário realizar uma transferência';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +75,7 @@ CREATE TABLE `transferencia` (
 
 LOCK TABLES `transferencia` WRITE;
 /*!40000 ALTER TABLE `transferencia` DISABLE KEYS */;
-INSERT INTO `transferencia` VALUES (1,2,1,NULL,NULL,'HYF9175','N','2025-05-28'),(2,1,2,NULL,NULL,'MZX6980','N','2025-05-28'),(3,3,3,NULL,NULL,'JZA3230','N','2025-05-28');
+INSERT INTO `transferencia` VALUES (1,2,1,NULL,NULL,'HYF-9175','A','2025-05-28'),(2,1,2,NULL,NULL,'MZX-6980','N','2025-05-28'),(3,3,3,NULL,NULL,'JZA3230','N','2025-05-28'),(13,6,1,NULL,NULL,'CSZ3V13','N','2025-06-10'),(18,2,2,1,'HYF-9175','HYF9B75','A','2025-06-16'),(19,2,1,2,'HYF9B75','HYF9B75','A','2025-06-16'),(20,2,2,1,'HYF9B75','APE0J97','N','2025-06-16');
 /*!40000 ALTER TABLE `transferencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,16 +93,16 @@ CREATE TABLE `veiculo` (
   `ano` int NOT NULL COMMENT 'Ano de fabricação do carro.',
   `cor` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabela para armazenamento exclusivo das informações dos veículos';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabela para armazenamento exclusivo das informações dos veículos';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `veiculo`
--- 
+--
 
 LOCK TABLES `veiculo` WRITE;
 /*!40000 ALTER TABLE `veiculo` DISABLE KEYS */;
-INSERT INTO `veiculo` VALUES (1,'Fiat','Uno Mille',2002,'Branco'),(2,'volkswagen','Gol',1998,'Preto'),(3,'volkswagen','Kombi',1980,'Amarelo'),(4,'Ford','Ka',2020,'Vermelho'),(5,'Peugeot','206',2015,'Prata');
+INSERT INTO `veiculo` VALUES (1,'Fiat','Uno Mille',2002,'Branco'),(2,'volkswagen','Gol',1998,'Preto'),(3,'volkswagen','Kombi',1980,'Amarelo'),(4,'Ford','Ka',2020,'Vermelho'),(5,'Peugeot','206',2015,'Prata'),(6,'Ford','Fiesta',2010,'azul'),(7,'Ford','Fiesta',2020,'azul');
 /*!40000 ALTER TABLE `veiculo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -117,4 +115,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-02 14:51:28
+-- Dump completed on 2025-06-16 16:00:55
