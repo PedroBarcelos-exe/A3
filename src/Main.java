@@ -271,8 +271,8 @@ public class Main {
                 novaPlaca = Veiculo.convertOldPlateToMercosul(veiculo.getPlacaAtual());
                 System.out.println("Placa antiga detectada. Convertendo para Mercosul: " + veiculo.getPlacaAtual() + " -> " + novaPlaca);
             } else {
-                novaPlaca = veiculo.getPlacaAtual();
-                System.out.println("Placa já está no padrão Mercosul. Mantendo: " + novaPlaca);
+                novaPlaca = Veiculo.generateMercosulPlate();
+                System.out.println("Placa já está no padrão Mercosul. Gerando uma nova aleatoriamente: " + novaPlaca);
             }
 
             // Atualiza o status da última transferência para 'Antiga'.
