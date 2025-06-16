@@ -602,7 +602,6 @@ public class Main {
             if (confirm.equals("S")) {
                 transferenciaDAO.deleteByVehicle(idVeiculo); // Exclui todas as transferências associadas ao veículo.
                 System.out.println("Veículo com ID " + idVeiculo + " e seu histórico de transferências foram baixados/removidos com sucesso.");
-                System.out.println("OBS: O registro do veículo na tabela 'veiculo' principal não foi removido para manter a integridade referencial com outros dados que possam existir.");
             } else {
                 System.out.println("Operação de baixa de veículo cancelada.");
             }
