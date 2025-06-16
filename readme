@@ -1,15 +1,2 @@
-# instruções do terminal para realizar atualização dos arquivos
-
-# @h-grassi ➜ /workspaces/A3 (main) $ git add . 
-# @h-grassi ➜ /workspaces/A3 (main) $ git commit
-
-# @h-grassi ➜ /workspaces/A3 (main) $ git push origin main
-
---integração com o banco de dados:
-1: necessário manter esta organização de pastas
-2: para executar via powerShell:
-   2.1: primeiro compila o programa:
-      2.1.1: javac -cp ".;lib/mysql-connector-j-9.3.0.jar" src/*.java -d bin
-   2.2: em seguida executa:
-      2.2.1: java -cp ".;lib\mysql-connector-j-9.3.0.jar;bin" Main
-sem estes passos não irá funcionar
+Aperta Play e seguir as orientações!!!
+https://www.canva.com/design/DAGqiEUmKLE/d-DUSa-Aqkm5TB9lb1A9yg/edit?utm_content=DAGqiEUmKLE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
